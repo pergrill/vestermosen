@@ -1,5 +1,7 @@
 
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@custom-variant dark (&:where(.dark, .dark *));
 
 * {
   box-sizing: border-box;
@@ -13,5 +15,12 @@ body,
 
 body {
   margin: 0;
+  background-color: var(--color-zinc-50);
+  color: var(--color-zinc-900);
+}
+
+.dark body {
+  background-color: var(--color-zinc-950);
+  color: var(--color-zinc-100);
 }
 
