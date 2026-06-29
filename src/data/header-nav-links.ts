@@ -1,6 +1,7 @@
 import siteLabels from './site-labels'
 
-const headerNavLinks = [  
+const headerNavLinks = [
+  { href: '/artikler', title: siteLabels.artikler },
   { href: '/info', title: siteLabels.info },
   { href: '/flagdays', title: siteLabels.flagdays },
   { href: '/links', title: siteLabels.links },

@@ -19,6 +19,7 @@ const siteLabels = {
   commonRoad: 'Fællesvej',
   bathingPier: 'Badebro',
   seeMore: 'Se mere',
+  artikler: 'Artikler',
 } as const
 
 export type SiteLabels = typeof siteLabels

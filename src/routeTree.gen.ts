@@ -16,6 +16,8 @@ import { Route as FlagdaysRouteImport } from './routes/flagdays'
 import { Route as AreamapRouteImport } from './routes/areamap'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ArtiklerIndexRouteImport } from './routes/artikler/index'
+import { Route as ArtiklerSlugRouteImport } from './routes/artikler/$slug'
 
 const StreetmapRoute = StreetmapRouteImport.update({
   id: '/streetmap',
@@ -52,6 +54,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ArtiklerIndexRoute = ArtiklerIndexRouteImport.update({
+  id: '/artikler/',
+  path: '/artikler/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArtiklerSlugRoute = ArtiklerSlugRouteImport.update({
+  id: '/artikler/$slug',
+  path: '/artikler/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +73,8 @@ export interface FileRoutesByFullPath {
   '/info': typeof InfoRoute
   '/links': typeof LinksRoute
   '/streetmap': typeof StreetmapRoute
+  '/artikler/$slug': typeof ArtiklerSlugRoute
+  '/artikler/': typeof ArtiklerIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +84,8 @@ export interface FileRoutesByTo {
   '/info': typeof InfoRoute
   '/links': typeof LinksRoute
   '/streetmap': typeof StreetmapRoute
+  '/artikler/$slug': typeof ArtiklerSlugRoute
+  '/artikler': typeof ArtiklerIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +96,8 @@ export interface FileRoutesById {
   '/info': typeof InfoRoute
   '/links': typeof LinksRoute
   '/streetmap': typeof StreetmapRoute
+  '/artikler/$slug': typeof ArtiklerSlugRoute
+  '/artikler/': typeof ArtiklerIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +109,8 @@ export interface FileRouteTypes {
     | '/info'
     | '/links'
     | '/streetmap'
+    | '/artikler/$slug'
+    | '/artikler/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +120,8 @@ export interface FileRouteTypes {
     | '/info'
     | '/links'
     | '/streetmap'
+    | '/artikler/$slug'
+    | '/artikler'
   id:
     | '__root__'
     | '/'
@@ -109,6 +131,8 @@ export interface FileRouteTypes {
     | '/info'
     | '/links'
     | '/streetmap'
+    | '/artikler/$slug'
+    | '/artikler/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,6 +143,8 @@ export interface RootRouteChildren {
   InfoRoute: typeof InfoRoute
   LinksRoute: typeof LinksRoute
   StreetmapRoute: typeof StreetmapRoute
+  ArtiklerSlugRoute: typeof ArtiklerSlugRoute
+  ArtiklerIndexRoute: typeof ArtiklerIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -172,6 +198,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/artikler/': {
+      id: '/artikler/'
+      path: '/artikler'
+      fullPath: '/artikler/'
+      preLoaderRoute: typeof ArtiklerIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/artikler/$slug': {
+      id: '/artikler/$slug'
+      path: '/artikler/$slug'
+      fullPath: '/artikler/$slug'
+      preLoaderRoute: typeof ArtiklerSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -183,6 +223,8 @@ const rootRouteChildren: RootRouteChildren = {
   InfoRoute: InfoRoute,
   LinksRoute: LinksRoute,
   StreetmapRoute: StreetmapRoute,
+  ArtiklerSlugRoute: ArtiklerSlugRoute,
+  ArtiklerIndexRoute: ArtiklerIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
